@@ -29,10 +29,46 @@ class Parque:
         n = self.atracciones.len()
         print("\n --- ESTADO DEL PARQUE ---")
         for i in range(n):
-            atraccion = self.atracciones.dequeue()
-            print(f"{atraccion.nombre_atraccion}:   {atraccion.visitantes}: ")
-            self.atracciones.enqueue(atraccion)
+            atraccion_actual = self.atracciones.dequeue()
+            print(f"{atraccion_actual.nombre_atraccion}:   {atraccion_actual.visitantes}: ")
+            self.atracciones.enqueue(atraccion_actual)
         print("Visitantes que ya salieron: ", self.salida_visitantes)
+
+
+    def eliminar_atraccion(self, nombre_atraccion_eli:str):
+    
+        parque_aux = Queue()
+        atraccion_eliminada= None
+        siguiente_atraccion = None
+
+        while not  self.atracciones.is_empty():
+            atraccion_actual = self.atracciones.dequeue()
+            if atraccion_actual.nombre_atraccion.lower() == nombre_atraccion_eli.lower():
+                atraccion_eliminada= atraccion_actual
+                if not self.atracciones.is_empty():
+                    siguiente_atraccion = self.atracciones.first()
+                print(f"/n la atracion {atraccion_actual.nombre_atraccion} fue eliminada con exito")
+
+            else:
+                parque_aux.enqueue(atraccion_actual)
+
+
+        if atraccion_eliminada:
+            if siguiente_atraccion:
+                while not atraccion_eliminada.visitantes.is_empty():
+                    visitante_act = atraccion_eliminada.visitantes.pop()
+                    siguiente_atraccion.agregar_visitante(visitante_act)
+            else:
+                while not atraccion_eliminada.visitantes.is_empty():
+                    visitante_act = atraccion_eliminada.visitantes.pop()
+                    self.salida_visitantes.enqueue(visitante_act)
+
+
+
+        while not parque_aux.is_empty():
+            self.atracciones.enqueue(parque_aux.dequeue())
+
+            
         
 
         

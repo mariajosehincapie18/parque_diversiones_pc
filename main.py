@@ -29,6 +29,8 @@ parque.ingresar_visitantes("A6", "adulto")
 parque.estado()
 
 
+
+
 turno = 1
 while True:
     print(f"\n--- TURNO {turno} ---")
@@ -44,6 +46,7 @@ while True:
             todas_atracciones_vacias= False
         
         parque.atracciones.enqueue(atraccion)
+
 
     if todas_atracciones_vacias:
         break
