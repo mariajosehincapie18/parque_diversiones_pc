@@ -22,7 +22,7 @@ class Parque:
          n= self.atracciones.len()
          for i in range(n):
               atraccion = self.atracciones.dequeue()
-              atraccion.procesar(i,n)
+              atraccion.procesar_turno(i,n)
               self.atracciones.enqueue(atraccion)
 
     def estado(self):

@@ -24,17 +24,20 @@ class Atraccion:
         atraccion_siguente = None
         if i < n -1:
             atraccion_siguente = self.parque.atracciones.first()
-            print(f"\n[{self.nombre_atraccion}]")
-            for _ in range (self.capacidad):
-                if not self.visitantes.is_empty():
-                    visitante_actual= self.visitantes.pop()
-                    print(f"/n El visitante procesado es: {visitante_actual}")
-                    if atraccion_siguente:
-                        atraccion_siguente.push(visitante_actual)
-                    else:
-                        self.parque.salida_visitantes.enqueue(visitante_actual)
 
-            print("Quedaron en espera: ", self.visitantes)
+        print(f"\n[{self.nombre_atraccion}]")
+        for _ in range (self.capacidad):
+            if not self.visitantes.is_empty():
+                visitante_actual= self.visitantes.pop()
+                print(f"/n El visitante procesado es: {visitante_actual}")
+
+
+                if atraccion_siguente:
+                        atraccion_siguente.agregar_visitante(visitante_actual)
+                else:
+                    self.parque.salida_visitantes.enqueue(visitante_actual)
+
+        print("Quedaron en espera: ", self.visitantes)
         
 
         
