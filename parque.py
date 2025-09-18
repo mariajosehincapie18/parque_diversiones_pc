@@ -7,6 +7,7 @@ class Parque:
     def __init__(self):
         self.atracciones =  Queue()
         self.salida_visitantes= Queue()
+        self.turno = 1
 
     def agregar_atraccion(self, nombre, capacidad):
         nueva_atraccion = Atraccion(self,nombre, capacidad)
@@ -19,11 +20,14 @@ class Parque:
             primera_atraccion.agregar_visitante(nuevo_visitante)
 
     def ejecutar_turno(self):
-         n= self.atracciones.len()
-         for i in range(n):
-              atraccion = self.atracciones.dequeue()
-              atraccion.procesar_turno(i,n)
-              self.atracciones.enqueue(atraccion)
+        print(f"\n--- TURNO {self.turno} ---") 
+        n= self.atracciones.len()
+        for i in range(n):
+            atraccion = self.atracciones.dequeue()
+            atraccion.procesar_turno(i,n)
+            self.atracciones.enqueue(atraccion)
+
+        self.turno += 1
 
     def estado(self):
         n = self.atracciones.len()
@@ -32,7 +36,20 @@ class Parque:
             atraccion_actual = self.atracciones.dequeue()
             print(f"{atraccion_actual.nombre_atraccion}:   {atraccion_actual.visitantes}: ")
             self.atracciones.enqueue(atraccion_actual)
+            
         print("Visitantes que ya salieron: ", self.salida_visitantes)
+
+
+    def esta_vacia(self):
+        n = self.atracciones.len()
+        for i in range(n):
+            atraccion_actual= self.atracciones.dequeue()
+            if not atraccion_actual.visitantes.is_empty():
+                self.atracciones.enqueue(atraccion_actual)
+                return False
+            self.atracciones.enqueue(atraccion_actual)
+
+        return True
 
 
     def eliminar_atraccion(self, nombre_atraccion_eli:str):
@@ -67,6 +84,9 @@ class Parque:
 
         while not parque_aux.is_empty():
             self.atracciones.enqueue(parque_aux.dequeue())
+
+
+
 
             
         
