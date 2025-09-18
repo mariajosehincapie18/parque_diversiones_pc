@@ -9,10 +9,10 @@ class Parque:
         self.salida_visitantes= Queue()
 
     def agregar_atraccion(self, nombre, capacidad):
-        nueva_atraccion = Atraccion(self, nombre, capacidad)
+        nueva_atraccion = Atraccion(self,nombre, capacidad)
         self.atracciones.enqueue(nueva_atraccion)
 
-    def ingresar_visitantes (self,id, tipo):
+    def ingresar_visitantes(self,id, tipo):
         nuevo_visitante = Visitante(id, tipo)
         if not self.atracciones.is_empty():
             primera_atraccion = self.atracciones.first()
