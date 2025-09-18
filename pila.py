@@ -28,7 +28,7 @@ class Stack:
      return self.__items[-1]
 
   def __str__(self):
-    return '--'.join(map(str,reversed(self.__items)))
+    return '↑'.join(map(str,reversed(self.__items)))
 
   def generate(self,num, min, max):
    for i in range(0,num):

@@ -12,15 +12,17 @@ class Parque:
     def agregar_atraccion(self, nombre, capacidad):
         nueva_atraccion = Atraccion(self,nombre, capacidad)
         self.atracciones.enqueue(nueva_atraccion)
+        print("✅Atraccion ingresado con exito")
 
     def ingresar_visitantes(self,id, tipo):
         nuevo_visitante = Visitante(id, tipo)
         if not self.atracciones.is_empty():
             primera_atraccion = self.atracciones.first()
             primera_atraccion.agregar_visitante(nuevo_visitante)
+            print("✅visitante ingresado con exito")
 
     def ejecutar_turno(self):
-        print(f"\n--- TURNO {self.turno} ---") 
+        print(f"\n--- ⏲️ TURNO {self.turno} ---") 
         n= self.atracciones.len()
         for i in range(n):
             atraccion = self.atracciones.dequeue()
@@ -29,15 +31,18 @@ class Parque:
 
         self.turno += 1
 
-    def estado(self):
+    def estado(self, cont =0):
         n = self.atracciones.len()
-        print("\n --- ESTADO DEL PARQUE ---")
+        print("\n --- 🚨ESTADO DEL PARQUE🚨 ---")
         for i in range(n):
             atraccion_actual = self.atracciones.dequeue()
-            print(f"{atraccion_actual.nombre_atraccion}:   {atraccion_actual.visitantes}: ")
+            cont = atraccion_actual.visitantes.len()
+            print(f"{atraccion_actual.nombre_atraccion}:  {cont} visitantes " )
+            print(f"\n{atraccion_actual.visitantes}" )   
             self.atracciones.enqueue(atraccion_actual)
             
-        print("Visitantes que ya salieron: ", self.salida_visitantes)
+        print(f"Visitantes que ya salieron:  {self.salida_visitantes.len()}")
+        print(self.salida_visitantes)
 
 
     def esta_vacia(self):
@@ -64,7 +69,7 @@ class Parque:
                 atraccion_eliminada= atraccion_actual
                 if not self.atracciones.is_empty():
                     siguiente_atraccion = self.atracciones.first()
-                print(f"/n la atracion {atraccion_actual.nombre_atraccion} fue eliminada con exito")
+                print(f"/n ✅ la  atracion {atraccion_actual.nombre_atraccion} fue eliminada con exito")
 
             else:
                 parque_aux.enqueue(atraccion_actual)
@@ -86,12 +91,6 @@ class Parque:
             self.atracciones.enqueue(parque_aux.dequeue())
 
 
-
-
-            
-        
-
-        
     
 
     def __str__(self):

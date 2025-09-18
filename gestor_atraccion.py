@@ -5,7 +5,7 @@ class Visitante:
         self.tipo = tipo
 
     def __str__(self):
-        return f"Visitante {self.id} ({self.tipo})"
+        return f"\n Visitante {self.id} ({self.tipo})"
         
 class Atraccion:
     def __init__(self,parque, nombre_atraccion: str, capacidad:int):
@@ -29,11 +29,11 @@ class Atraccion:
         for _ in range (self.capacidad):
             if not self.visitantes.is_empty():
                 visitante_actual= self.visitantes.pop()
-                print(f"/n El visitante procesado es: {visitante_actual}")
-
+                print(f"\n El visitante procesado es: {visitante_actual}")
 
                 if atraccion_siguente:
                         atraccion_siguente.agregar_visitante(visitante_actual)
+
                 else:
                     self.parque.salida_visitantes.enqueue(visitante_actual)
 

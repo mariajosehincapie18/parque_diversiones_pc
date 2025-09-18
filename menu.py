@@ -1,14 +1,14 @@
 
 def mostrar_menu(parque):
     while True:
-        print("\n--- MENÚ DEL PARQUE ---")
-        print("1. Agregar atracción")
-        print("2. Eliminar atracción")
-        print("3. Ingresar visitante")
-        print("4. Ejecutar un turno")
-        print("5. Ver estado del parque")
-        print("6. Turnos automaticos")
-        print("7. Salir")
+        print("\n--- 🎡🎢 Bienvenidoo al PARQUE de atracciones 🎢🎡 ---")
+        print("1️⃣ Agregar atracción")
+        print("2️⃣ Eliminar atracción")
+        print("3️⃣ Ingresar visitante")
+        print("4️⃣ Ejecutar un turno")
+        print("5️⃣ Ver estado del parque")
+        print("6️⃣ Turnos automaticos")
+        print("❌ Salir")
 
         opcion = input("Elige una opción: ")
 
@@ -23,7 +23,7 @@ def mostrar_menu(parque):
             
         elif opcion  == "3":
             nombre_visitante = input("Nombre del nuevo visitante: ")
-            tipo = input("Adulto/niño")
+            tipo = input("Adulto/niño: ")
             parque.ingresar_visitantes(nombre_visitante,tipo)
 
         elif opcion == "4":
@@ -38,10 +38,11 @@ def mostrar_menu(parque):
             while not parque.esta_vacia():
                 parque.ejecutar_turno()
                 parque.estado()
-            print("\n El parque esta vacio. ")
+            print("\n ⚠️ El parque esta vacio ⚠️")
 
-        elif opcion == "7":
-            print("saliendo del parque")
+        elif opcion == "x":
+            print("👋 Gracias por visitar el parque👋")
+
 
         else:
-            print("Opcion no valida, intente de nuevo")
+            print("❌Opcion no valida, intente de nuevo")
