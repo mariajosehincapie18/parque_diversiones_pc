@@ -34,7 +34,7 @@ class Parque:
     def estado(self, cont =0):
         n = self.atracciones.len()
         print("\n --- 🚨ESTADO DEL PARQUE🚨 ---")
-        for i in range(n):
+        for _ in range(n):
             atraccion_actual = self.atracciones.dequeue()
             cont = atraccion_actual.visitantes.len()
             print(f"{atraccion_actual.nombre_atraccion}:  {cont} visitantes " )
